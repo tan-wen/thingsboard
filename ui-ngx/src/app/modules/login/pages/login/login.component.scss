@@ -19,92 +19,289 @@
 :host {
   display: flex;
   flex: 1 1 0;
-  .tb-login-content {
-    margin-top: 36px;
-    margin-bottom: 76px;
-    background-color: #eee;
-    --mat-card-elevated-container-elevation: none;
-    .tb-login-form {
-      @media #{$mat-gt-xs} {
-        width: 480px !important;
-      }
+  min-width: 0;
+}
 
-      .forgot-password {
-        --mat-button-text-horizontal-padding: 0;
-        --mat-button-text-container-height: 20px;
-      }
+.tb-login-page {
+  position: relative;
+  min-width: 0;
+  min-height: 100%;
+  overflow: hidden;
+  background: #84b5ec;
+}
 
-      .tb-action-button{
-        margin: 20px 0 16px;
-      }
+.tb-login-hero {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(13, 72, 167, .2), rgba(25, 118, 233, .04)),
+    url('/assets/images/iot-login-hero.png') center center / cover no-repeat,
+    #84b5ec;
+
+  &::before,
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    pointer-events: none;
+  }
+
+  &::before {
+    z-index: 0;
+    background: url('/assets/images/iot-login-hero.png') center center / cover no-repeat;
+    filter: blur(18px);
+    opacity: .28;
+    transform: scale(1.06);
+  }
+
+  &::after {
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(7, 49, 121, .12), transparent 46%, rgba(8, 61, 151, .42));
+  }
+}
+
+.tb-hero-slogan {
+  position: absolute;
+  z-index: 2;
+  left: clamp(28px, 4vw, 72px);
+  right: 40px;
+  bottom: clamp(20px, 3.5vh, 40px);
+  padding-left: 2px;
+  font-size: clamp(18px, 1.8vw, 27px);
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-shadow: 0 3px 16px rgba(4, 48, 121, .3);
+}
+
+.tb-brand-mark {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, .66);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .18);
+  box-shadow: 0 8px 24px rgba(18, 82, 174, .16);
+  backdrop-filter: blur(8px);
+
+  mat-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+}
+
+.tb-login-panel {
+  position: relative;
+  z-index: 3;
+  width: clamp(430px, 34vw, 560px);
+  margin: clamp(28px, 5vh, 60px) clamp(28px, 5vw, 80px) clamp(28px, 5vh, 60px) auto;
+  padding: 0;
+  overflow-y: auto;
+  background: transparent;
+}
+
+.tb-login-form {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  padding: clamp(34px, 5vh, 56px) clamp(34px, 4vw, 58px);
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(235, 245, 255, .5), rgba(216, 235, 255, .32));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .42),
+    0 24px 70px rgba(13, 62, 137, .2);
+  backdrop-filter: blur(24px) saturate(120%);
+
+  .tb-mobile-brand {
+    display: none;
+  }
+
+  .tb-login-heading {
+    margin-bottom: 30px;
+
+    > span {
+      color: $tb-primary-color;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
     }
 
-    .container-divider {
+    h2 {
+      margin: 8px 0 9px;
+      color: #172b4d;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    p {
+      margin: 0;
+      color: #8091a8;
+      font-size: 14px;
+    }
+  }
+
+  .tb-progress-placeholder {
+    height: 4px;
+  }
+
+  .tb-login-toast {
+    height: 20px;
+  }
+
+  .tb-login-field {
+    width: 100%;
+    margin-bottom: 4px;
+    --mat-form-field-outlined-outline-color: rgba(91, 137, 191, .36);
+    --mat-form-field-outlined-hover-outline-color: rgba(60, 127, 207, .7);
+    --mat-form-field-outlined-focus-outline-color: #{$tb-primary-color};
+    --mat-form-field-container-height: 54px;
+    --mat-form-field-outlined-container-color: rgba(236, 246, 255, .28);
+
+    mat-icon {
+      color: #7890ad;
+    }
+  }
+
+  .forgot-password {
+    margin-top: -4px;
+    --mat-button-text-horizontal-padding: 0;
+    --mat-button-text-container-height: 32px;
+
+    .tb-reset-password {
+      color: $tb-primary-color;
+      font-size: 13px;
+    }
+  }
+
+  .tb-action-button {
+    height: 48px;
+    margin: 18px 0 16px;
+    border-radius: 7px;
+    font-size: 15px;
+    letter-spacing: 6px;
+    box-shadow: 0 10px 24px rgba(25, 118, 233, .24);
+  }
+
+  .tb-login-footer {
+    margin-top: 32px;
+    color: #a2afc0;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+}
+
+.container-divider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 16px;
+
+  .text {
+    padding: 0 8px;
+    color: #8797aa;
+    font-size: 13px;
+    line-height: 24px;
+  }
+}
+
+.oauth-container {
+  .title {
+    margin-bottom: 4px;
+    color: #52657d;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  .material-icons {
+    width: 20px;
+    min-width: 20px;
+  }
+
+  a.login-with-button {
+    color: rgba(black, .76);
+    background-color: #fff;
+  }
+
+  .login-button-container a.login-with-button {
+    min-width: 60px;
+    flex: 1 1 130px;
+
+    .tb-mat-20 {
+      margin-right: 12px;
+    }
+  }
+}
+
+@media #{$mat-lt-lg} {
+  .tb-login-panel {
+    width: clamp(410px, 40vw, 500px);
+    margin-right: 32px;
+  }
+}
+
+@media #{$mat-lt-md} {
+  .tb-login-hero {
+    display: block;
+    background-position: 42% center;
+  }
+
+  .tb-login-panel {
+    width: 100%;
+    margin: 0;
+    padding: 36px 24px;
+    background: rgba(21, 79, 161, .08);
+  }
+
+  .tb-login-form {
+    max-width: 430px;
+    padding: 32px;
+    background: rgba(229, 241, 255, .54);
+
+    .tb-mobile-brand {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      margin-bottom: 16px;
+      gap: 10px;
+      margin-bottom: 32px;
+      color: #175fca;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 3px;
 
-      .mat-divider-horizontal{
-        --mat-divider-color: var(--mat-form-field-outlined-outline-color);
-      }
-
-      .text {
-        padding-right: 8px;
-        padding-left: 8px;
-        font-size: 16px;
-        line-height: 24px;
+      .tb-brand-mark {
+        width: 38px;
+        height: 38px;
+        color: #fff;
+        border-color: transparent;
+        background: linear-gradient(135deg, #175fc9, #2e8cf3);
       }
     }
+  }
+}
 
-    .oauth-container{
-      .title {
-        font-size: 20px;
-        line-height: 24px;
-        letter-spacing: .1px;
-        text-align: center;
-        margin-bottom: 4px;
-      }
+@media #{$mat-lt-sm} {
+  .tb-login-panel {
+    align-items: stretch;
+    padding: 18px;
+  }
 
-      .material-icons{
-        width: 20px;
-        min-width: 20px;
-      }
-
-      a.login-with-button {
-        color: rgba(black, 0.87);
-        background-color: #ffffff;
-      }
-
-      .login-button-container {
-        a.login-with-button {
-          max-width: 170px;
-          min-width: 60px;
-          flex-grow: 1;
-          flex-basis: 130px;
-
-          .tb-mat-20 {
-            margin-right: 12px;
-          }
-        }
-
-        &:has(> :nth-child(1):last-child) {
-          a.login-with-button {
-            max-width: 100%;
-          }
-        }
-
-        &:has(> :nth-child(2):last-child),
-        &:has(> :nth-child(4):last-child) {
-          a.login-with-button {
-            max-width: 100%;
-            flex-basis: 180px;
-          }
-        }
-      }
-    }
+  .tb-login-form {
+    max-width: none;
+    min-height: auto;
+    justify-content: center;
+    padding: 28px 24px;
+    border-radius: 14px;
+    background: rgba(232, 243, 255, .62);
   }
 }
 

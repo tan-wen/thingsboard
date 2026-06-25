@@ -20,9 +20,13 @@
 
   mat-sidenav-container {
     flex: 1;
+    background: #f3f7fd;
   }
   mat-sidenav.tb-site-sidenav {
-    width: 250px;
+    width: 248px;
+    border-right: 1px solid #dce6f4;
+    background: #fff;
+    box-shadow: 4px 0 18px rgba(42, 83, 144, .08) !important;
     @media (max-width:456px) {
       width: calc(100% - 56px);
     }
@@ -33,19 +37,37 @@
       .tb-nav-header-toolbar {
         min-height: 64px;
         height: inherit;
-        padding: 0;
+        padding: 0 22px;
+        background: linear-gradient(135deg, #174fb7 0%, #1976ed 100%);
         z-index: 2;
         flex-shrink: 0;
         white-space: nowrap;
-        border-bottom: 1px solid rgba(0, 0, 0, .12);
-        & > div {
+        border-bottom: 0;
+
+        .tb-platform-brand {
           height: 64px;
-          .tb-logo-title {
-            width: auto;
-            max-width: 100%;
-            height: 36px;
-            max-height: 100%;
-            margin: auto;
+          gap: 12px;
+          color: #fff;
+          font-size: 22px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          text-decoration: none;
+        }
+
+        .tb-platform-brand-mark {
+          display: inline-flex;
+          width: 36px;
+          height: 36px;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(255, 255, 255, .45);
+          border-radius: 10px;
+          background: rgba(255, 255, 255, .14);
+
+          mat-icon {
+            width: 22px;
+            height: 22px;
+            font-size: 22px;
           }
         }
       }
@@ -54,17 +76,25 @@
       overflow-y: auto;
       height: inherit;
       padding: 0;
+      background: #fff;
+      color: #52657d;
     }
   }
   .tb-primary-toolbar {
     z-index: 2;
+    min-height: 64px;
+    background: linear-gradient(90deg, #1d5fd1 0%, #2682f4 58%, #6ca9f5 100%);
+    box-shadow: 0 3px 12px rgba(31, 102, 204, .2);
+
     h1 {
       font-size: 24px !important;
-      font-weight: 400 !important;
+      font-weight: 600 !important;
     }
   }
   .tb-main-content {
     overflow: auto;
     position: relative;
+    background: #f3f7fd;
+    padding: 12px;
   }
 }

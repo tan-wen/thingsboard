@@ -23,9 +23,12 @@
                [opened]="sidenavOpened && !forceFullscreen">
     <header class="tb-nav-header">
       <mat-toolbar color="primary" class="tb-nav-header-toolbar">
-        <div class="flex flex-auto">
-          <tb-logo [src]="logo" class="tb-logo-title"></tb-logo>
-        </div>
+        <a class="tb-platform-brand flex flex-auto items-center" routerLink="/">
+          <span class="tb-platform-brand-mark">
+            <mat-icon>hub</mat-icon>
+          </span>
+          <span>物联网平台</span>
+        </a>
       </mat-toolbar>
     </header>
     <mat-toolbar color="primary" class="tb-side-menu-toolbar flex flex-1 flex-col" role="navigation">
@@ -61,7 +64,6 @@
                    placeholder="{{ 'common.enter-search' | translate }}"/>
           </mat-form-field>
         </div>
-        <tb-github-badge class="lt-md:!hidden"></tb-github-badge>
         <button [class.!hidden]="!searchEnabled"
                 mat-icon-button (click)="openSearch()">
           <mat-icon class="material-icons">search</mat-icon>
