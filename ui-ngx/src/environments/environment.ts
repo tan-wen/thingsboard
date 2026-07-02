@@ -19,13 +19,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  appTitle: '物联网平台',
+  appTitle: '物联网系统',
   production: false,
 // @ts-ignore
   tbVersion: TB_VERSION,
 // @ts-ignore
   supportedLangs: SUPPORTED_LANGS,
-  defaultLang: 'en_US'
+  defaultLang: 'zh_CN'
 };
 
 /*

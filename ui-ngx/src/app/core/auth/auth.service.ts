@@ -142,6 +142,10 @@ export class AuthService {
     return this.http.post<LoginResponse>('/api/auth/login/public', publicLoginRequest, defaultHttpOptions());
   }
 
+  public closeParkLogin(token: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>('/api/noauth/closepark/login', {token}, defaultHttpOptions(false, true));
+  }
+
   public sendResetPasswordLink(email: string) {
     return this.http.post('/api/noauth/resetPasswordByEmail',
       {email}, defaultHttpOptions());
@@ -505,9 +509,10 @@ export class AuthService {
   private updatedAuthUserFromToken(token: string) {
     const authUser = getCurrentAuthUser(this.store);
     const tokenData = this.jwtHelper.decodeToken(token);
-    if (authUser && tokenData && ['sub', 'firstName', 'lastName'].some(value => authUser[value] !== tokenData[value])) {
+    if (authUser && tokenData && ['sub', 'displayName', 'firstName', 'lastName'].some(value => authUser[value] !== tokenData[value])) {
       this.store.dispatch(new ActionAuthUpdateAuthUser({
         sub: tokenData.sub,
+        displayName: tokenData.displayName,
         firstName: tokenData.firstName,
         lastName: tokenData.lastName,
       }));

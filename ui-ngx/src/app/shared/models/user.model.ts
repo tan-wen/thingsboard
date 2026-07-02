@@ -67,6 +67,7 @@ export interface AuthUser {
   sub: string;
   scopes: string[];
   userId: string;
+  displayName?: string;
   firstName: string;
   lastName: string;
   enabled: boolean;

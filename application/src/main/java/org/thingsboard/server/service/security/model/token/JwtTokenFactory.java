@@ -70,6 +70,7 @@ public class JwtTokenFactory {
     private static final String TENANT_ID = "tenantId";
     private static final String CUSTOMER_ID = "customerId";
     private static final String SESSION_ID = "sessionId";
+    private static final String DISPLAY_NAME = "displayName";
 
     @Lazy
     private final JwtSettingsService jwtSettingsService;
@@ -98,6 +99,9 @@ public class JwtTokenFactory {
         }
         if (securityUser.getCustomerId() != null) {
             jwtBuilder.claim(CUSTOMER_ID, securityUser.getCustomerId().getId().toString());
+        }
+        if (StringUtils.isNotBlank(securityUser.getDisplayName())) {
+            jwtBuilder.claim(DISPLAY_NAME, securityUser.getDisplayName());
         }
 
         String token = jwtBuilder.compact();
@@ -134,6 +138,7 @@ public class JwtTokenFactory {
         if (claims.get(SESSION_ID, String.class) != null) {
             securityUser.setSessionId(claims.get(SESSION_ID, String.class));
         }
+        securityUser.setDisplayName(claims.get(DISPLAY_NAME, String.class));
 
         boolean isPublic = false;
         if (authority != Authority.PRE_VERIFICATION_TOKEN && authority != Authority.MFA_CONFIGURATION_TOKEN) {
@@ -150,9 +155,13 @@ public class JwtTokenFactory {
     public JwtToken createRefreshToken(SecurityUser securityUser) {
         UserPrincipal principal = securityUser.getUserPrincipal();
 
-        String token = setUpToken(securityUser, Collections.singletonList(Authority.REFRESH_TOKEN.name()), jwtSettingsService.getJwtSettings().getRefreshTokenExpTime())
-                .claim(IS_PUBLIC, principal.getType() == UserPrincipal.Type.PUBLIC_ID)
-                .id(UUID.randomUUID().toString()).compact();
+        JwtBuilder jwtBuilder = setUpToken(securityUser, Collections.singletonList(Authority.REFRESH_TOKEN.name()),
+                jwtSettingsService.getJwtSettings().getRefreshTokenExpTime())
+                .claim(IS_PUBLIC, principal.getType() == UserPrincipal.Type.PUBLIC_ID);
+        if (StringUtils.isNotBlank(securityUser.getDisplayName())) {
+            jwtBuilder.claim(DISPLAY_NAME, securityUser.getDisplayName());
+        }
+        String token = jwtBuilder.id(UUID.randomUUID().toString()).compact();
 
         return new AccessJwtToken(token);
     }
@@ -176,6 +185,7 @@ public class JwtTokenFactory {
         if (claims.get(SESSION_ID, String.class) != null) {
             securityUser.setSessionId(claims.get(SESSION_ID, String.class));
         }
+        securityUser.setDisplayName(claims.get(DISPLAY_NAME, String.class));
         return securityUser;
     }
 

@@ -30,6 +30,7 @@ import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '@core/auth/auth.service';
 import { UserPasswordPolicy } from '@shared/models/settings.models';
+import { CloseParkLoginComponent } from '@modules/login/pages/login/closepark-login.component';
 
 const passwordPolicyResolver: ResolveFn<UserPasswordPolicy> = (route: ActivatedRouteSnapshot,
    state: RouterStateSnapshot,
@@ -43,6 +44,14 @@ const passwordPolicyResolver: ResolveFn<UserPasswordPolicy> = (route: ActivatedR
 };
 
 const routes: Routes = [
+  {
+    path: 'closepark',
+    component: CloseParkLoginComponent,
+    data: {
+      title: '',
+      module: 'public'
+    }
+  },
   {
     path: 'login',
     component: LoginComponent,

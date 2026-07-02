@@ -190,7 +190,7 @@
         <module>dao</module>
         <module>edqs</module>
         <module>transport</module>
-<!--        <module>ui-ngx</module>-->
+        <module>ui-ngx</module>
         <module>tools</module>
         <module>application</module>
         <module>msa</module>

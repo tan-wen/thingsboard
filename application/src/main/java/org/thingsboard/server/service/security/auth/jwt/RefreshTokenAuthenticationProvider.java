@@ -58,6 +58,7 @@ public class RefreshTokenAuthenticationProvider extends AbstractAuthenticationPr
             securityUser = authenticateByPublicId(principal.getValue());
         }
         securityUser.setSessionId(unsafeUser.getSessionId());
+        securityUser.setDisplayName(unsafeUser.getDisplayName());
         if (tokenOutdatingService.isOutdated(rawAccessToken.token(), securityUser.getId())) {
             throw new CredentialsExpiredException("Token is outdated");
         }

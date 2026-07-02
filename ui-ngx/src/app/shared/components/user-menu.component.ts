@@ -20,7 +20,7 @@ import { Authority } from '@shared/models/authority.enum';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '@core/core.state';
 import { selectAuthUser, selectUserDetails } from '@core/auth/auth.selectors';
-import { map } from 'rxjs/operators';
+import { combineLatest, map } from 'rxjs';
 import { AuthService } from '@core/auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -47,9 +47,11 @@ export class UserMenuComponent implements OnInit, OnDestroy {
     map((user) => this.getAuthorityName(user))
   );
 
-  userDisplayName$ = this.store.pipe(
-    select(selectUserDetails),
-    map((user) => this.getUserDisplayName(user))
+  userDisplayName$ = combineLatest([
+    this.store.pipe(select(selectAuthUser)),
+    this.store.pipe(select(selectUserDetails))
+  ]).pipe(
+    map(([authUser, user]) => authUser?.displayName || this.getUserDisplayName(user))
   );
 
   constructor(private store: Store<AppState>,

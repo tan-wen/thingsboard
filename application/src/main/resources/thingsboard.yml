@@ -175,6 +175,13 @@ security:
     value_prefix: "${SECURITY_API_KEY_VALUE_PREFIX:tb_}"
     # Length of the auto-generated API key. Max is 255
     value_bytes_size: "${SECURITY_API_KEY_VALUE_PREFIX:64}"
+  # ClosePark third-party login parameters
+  closepark:
+    enabled: "${SECURITY_CLOSEPARK_ENABLED:false}"
+    permission_check_url: "${SECURITY_CLOSEPARK_PERMISSION_CHECK_URL:https://closepark-test.imtenrent.com/prod-api/gm/thingsboard/permissionCheck}"
+    api_key: "${SECURITY_CLOSEPARK_API_KEY:tb_JD2PVNMbGeyWncprjK3OPUrd-ySA6TKczzGw9KKvtboF-3u6D75fy5_CDTWOfWt1papoDIzckbzLNFKgF-hVYQ}"
+    connect_timeout_ms: "${SECURITY_CLOSEPARK_CONNECT_TIMEOUT_MS:5000}"
+    read_timeout_ms: "${SECURITY_CLOSEPARK_READ_TIMEOUT_MS:5000}"
   # Enable/disable case-sensitive username login
   user_login_case_sensitive: "${SECURITY_USER_LOGIN_CASE_SENSITIVE:true}"
   claim:

@@ -38,6 +38,8 @@ public class SecurityUser extends User {
     private UserPrincipal userPrincipal;
     @Getter @Setter
     private String sessionId = UUID.randomUUID().toString();
+    @Getter @Setter
+    private String displayName;
 
     public SecurityUser() {
         super();

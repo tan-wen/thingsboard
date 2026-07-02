@@ -15,11 +15,11 @@
 ///
 
 export const environment = {
-  appTitle: '物联网平台',
+  appTitle: '连云港化工园区物联网系统',
   production: true,
 // @ts-ignore
   tbVersion: TB_VERSION,
 // @ts-ignore
   supportedLangs: SUPPORTED_LANGS,
-  defaultLang: 'en_US'
+  defaultLang: 'zh_CN'
 };
